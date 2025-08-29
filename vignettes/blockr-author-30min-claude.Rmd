@@ -1,0 +1,398 @@
+---
+title: "Become a Blockr Block Author in 30 min with Claude Code"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Become a Blockr Block Author in 30 min with Claude Code}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Become a Blockr Block Author in 30 min with Claude Code
+
+Welcome to the fastest way to become a proficient blockr block author! This tutorial will take you from zero to creating your own custom blockr packages in just 30 minutes using Claude Code's specialized blockr agents.
+
+## Prerequisites
+
+- R and RStudio installed
+- Basic familiarity with R programming
+- Claude Code CLI installed and configured
+- Access to blockr agents (ask Christoph for current setup instructions)
+
+---
+
+## Step 1: Become familiar with blockr (5 minutes)
+
+### Install blockr packages
+
+First, let's install the core blockr ecosystem:
+
+```r
+# Install blockr.ui and blockr.dplyr
+pak::pak("BristolMyersSquibb/blockr.core")  # development version
+pak::pak("BristolMyersSquibb/blockr.ui")
+pak::pak("BristolMyersSquibb/blockr.dplyr")
+pak::pak("BristolMyersSquibb/blockr.ggplot")
+
+# Load the packages
+library(blockr.ui)
+library(blockr.dplyr)
+library(blockr.ggplot)
+library(blockr.core)
+```
+
+### Try the demo workflow
+
+Let's see blockr in action with a simple demonstration:
+
+```r
+# Run the demo app to see blockr's visual interface
+run_demo_app()
+```
+
+This opens an interactive web interface where you can:
+- Drag and drop data blocks
+- Connect blocks to create data pipelines
+- See real-time results as you build workflows
+- Export the generated R code
+
+### Key blockr concepts
+
+**Blocks** are the fundamental units:
+- **Data blocks**: Load/generate data (CSV files, databases, APIs)
+- **Transform blocks**: Modify data (filter, select, mutate, summarize)
+- **Plot blocks**: Create visualizations (ggplot2-based charts)
+
+**Workflows** connect blocks together:
+- Each block outputs data that feeds into the next block
+- Visual pipeline shows data flow
+- Generated R code can be extracted and run independently
+
+**Reactivity** powers the interface:
+- Changes in one block automatically update downstream blocks
+- Real-time validation and error handling
+- Interactive parameter adjustment
+
+---
+
+## Step 2: Set up Claude Agents (5 minutes)
+
+### Install Claude Code with blockr agents
+
+Claude Code includes specialized agents for blockr development. Currently, you need to ask Christoph for the exact setup instructions as this is actively being developed.
+
+The key agents you'll use are:
+- **blockr-setup-package**: Creates complete package structure
+- **blockr-create-block**: Generates new blocks (data/transform/plot)
+- **blockr-validate-blocks**: Screenshot validation and testing
+
+### Verify agent access
+
+In your terminal with Claude Code:
+
+```bash
+claude --help
+# Look for blockr-related commands or agents
+```
+
+---
+
+## Step 3: Create a new blockr package (5 minutes)
+
+### Use the blockr-setup-package agent
+
+Let's create your first blockr package:
+
+```bash
+claude "Use the blockr-setup-package agent to create a new blockr package called blockr.babysteps in the current directory"
+```
+
+This agent will:
+1. Create the complete package directory structure
+2. Set up proper DESCRIPTION, NAMESPACE files
+3. Initialize the essential R files (registration, package loading)
+4. Create screenshot validation infrastructure
+5. Generate CLAUDE.md with development documentation
+
+### Explore the generated structure
+
+After the agent completes, examine what was created:
+
+```bash
+cd blockr.babysteps
+ls -la
+```
+
+You should see:
+```
+blockr.babysteps/
+├── DESCRIPTION          # Package metadata
+├── NAMESPACE           # Exported functions
+├── CLAUDE.md          # Development documentation
+├── R/
+│   ├── pkg.R          # Package documentation
+│   ├── register.R     # Block registration
+│   └── zzz.R          # Package loading
+├── inst/
+│   └── scripts/       # Screenshot validation
+├── man/               # Documentation
+└── tests/             # Unit tests
+```
+
+### Load the package
+
+```r
+# Load your new package for development
+devtools::load_all()
+
+# Check that it loads without errors
+library(blockr.babysteps)
+```
+
+---
+
+## Step 4: Add a new block (5 minutes)
+
+### Create your first block using the agent
+
+Now let's add a custom block to your package:
+
+```bash
+claude "Use the blockr-create-block agent to create a data block that loads CSV files with parameters for file path, delimiter, and whether to include headers"
+```
+
+The agent will:
+1. Analyze your requirements (data block, CSV loading)
+2. Create the appropriate block implementation
+3. Add proper reactive values and UI components
+4. Include input validation and error handling
+5. Update package registration
+
+### Alternative: Create different block types
+
+You can create various block types:
+
+**Transform block example:**
+```bash
+claude "Use the blockr-create-transform-block agent to create a block that filters data based on numeric ranges and text matching"
+```
+
+**Plot block example:**
+```bash
+claude "Use the blockr-create-plot-block agent to create a scatter plot block with customizable aesthetics and color grouping"
+```
+
+### Test your new block
+
+```r
+# Reload the package to pick up new blocks
+devtools::load_all()
+
+# Test your block (assuming you created a CSV loader)
+csv_block <- new_csv_loader_block(
+  file_path = "path/to/your/file.csv",
+  delimiter = ",",
+  headers = TRUE
+)
+
+# Serve it in the blockr interface
+blockr.core::serve(csv_block)
+```
+
+---
+
+## Step 5: Screenshot validation (5 minutes)
+
+### Understanding screenshot validation
+
+Screenshot validation is the **primary debugging method** for blockr blocks. It:
+- Takes screenshots of blocks in action
+- Shows both UI controls AND data output
+- Provides visual confirmation that blocks work correctly
+- Helps identify issues quickly
+
+### Run screenshot validation
+
+```bash
+claude "Use the blockr-validate-blocks agent to validate all blocks in the current package"
+```
+
+This will:
+1. Find all block implementations in your package
+2. Generate screenshots for each block
+3. Report which blocks are working vs broken
+4. Save screenshots to `man/figures/` directory
+
+### Interpret the results
+
+Check the generated screenshots:
+
+```r
+# List generated screenshots
+list.files("man/figures/", pattern = "\\.png$")
+```
+
+**✅ Working blocks** show:
+- UI controls (inputs, dropdowns, checkboxes)
+- **AND** data output (tables, plots, results)
+
+**❌ Broken blocks** show:
+- Only UI controls
+- **NO** data output (empty area where results should be)
+
+### Debug broken blocks
+
+If a block is broken (no data output in screenshot):
+
+1. **Check expression syntax**: Most common issue is malformed R expressions
+2. **Verify state management**: Ensure all constructor parameters are in state list
+3. **Test internal functions**: Verify helper functions work independently
+4. **Check reactive values**: Ensure `r_` prefix pattern is followed
+
+---
+
+## Step 6: Understand your block (5 minutes)
+
+### Code walkthrough
+
+Let's examine the key patterns in your generated block:
+
+```r
+new_your_block <- function(
+  param1 = "default1",
+  param2 = 100L,
+  param3 = FALSE,
+  ...
+) {
+  blockr.core::new_data_block(
+    # Server function
+    function(id) {
+      moduleServer(id, function(input, output, session) {
+        # 1. Reactive values with r_ prefix
+        r_param1 <- reactiveVal(param1)
+        r_param2 <- reactiveVal(param2)
+        r_param3 <- reactiveVal(param3)
+
+        # 2. Input observers
+        observeEvent(input$param1, { r_param1(input$param1) })
+        observeEvent(input$param2, { r_param2(input$param2) })
+        observeEvent(input$param3, { r_param3(input$param3) })
+
+        list(
+          # 3. Expression building (parse/glue pattern)
+          expr = reactive({
+            expr_text <- glue::glue("your_function('{r_param1()}', {r_param2()})")
+            parse(text = expr_text)[[1]]
+          }),
+          # 4. State management (ALL constructor params)
+          state = list(
+            param1 = r_param1,
+            param2 = r_param2,
+            param3 = r_param3
+          )
+        )
+      })
+    },
+    # UI function
+    function(id) {
+      tagList(
+        # Your UI components here
+      )
+    },
+    class = "your_block_class",
+    ...
+  )
+}
+```
+
+### Essential patterns explained
+
+**1. Reactive Values (`r_` prefix)**
+- Store dynamic values that change based on user input
+- Always use `reactiveVal()` for initialization
+- Name with `r_` prefix for clarity
+
+**2. Input Observers**
+- Listen for changes in UI inputs
+- Update reactive values when inputs change
+- Use `observeEvent(input$name, { r_name(input$name) })`
+
+**3. Expression Building**
+- Use `parse(text = glue::glue())` pattern (not `bquote`)
+- Build R expressions that will be evaluated by blockr
+- Reference reactive values with `r_name()` calls
+
+**4. State Management**
+- **Critical**: ALL constructor parameters MUST be in state list
+- Enables block serialization and reconstruction
+- Maintains consistency across sessions
+
+### Next steps for development
+
+Now that you have a working blockr package:
+
+1. **Add more blocks**: Use the create-block agents for additional functionality
+2. **Customize UI**: Enhance the visual design and user experience
+3. **Add validation**: Implement input validation and error handling
+4. **Write tests**: Create unit tests for your block logic
+5. **Create documentation**: Add examples and usage instructions
+6. **Share your package**: Publish to GitHub or internal repositories
+
+---
+
+## Common Troubleshooting
+
+### Block shows UI but no data output
+
+**Cause**: Usually expression syntax errors or missing internal functions
+
+**Solution**:
+1. Check the `expr` reactive for proper `parse(text = glue::glue())` syntax
+2. Verify internal functions are accessible (use `:::` for package internals)
+3. Test expressions manually in R console
+
+### Block parameters don't save state
+
+**Cause**: Constructor parameters missing from state list
+
+**Solution**:
+1. Ensure ALL constructor parameters appear in state list
+2. Match parameter names exactly
+3. Use reactive values (`r_name`) in state, not raw values
+
+---
+
+## Conclusion
+
+Congratulations! In just 30 minutes, you've:
+
+✅ **Learned blockr fundamentals** and tried the demo workflow
+✅ **Set up Claude Code agents** for blockr development
+✅ **Created a complete blockr package** with proper structure
+✅ **Added custom blocks** using specialized agents
+✅ **Validated functionality** with screenshot testing
+✅ **Understood the code patterns** that make blockr work
+
+### Key takeaways
+
+- **blockr makes data analysis visual** with drag-and-drop workflows
+- **Claude Code agents accelerate development** with automated code generation
+- **Screenshot validation is essential** for debugging block functionality
+- **Following blockr patterns** (reactive values, parse/glue, state management) ensures reliability
+- **The blockr.example package** serves as your reference template
+
+### Resources for continued learning
+
+- **blockr.example package**: Your reference implementation with all essential patterns
+- **CLAUDE.md files**: Comprehensive development documentation in each package
+- **Screenshot validation**: Your primary debugging and verification tool
+- **blockr.dplyr**: Example of complex transform blocks
+- **Official documentation**: https://bristolmyerssquibb.github.io/blockr.ui/
+
+Happy blockr development! 🚀
