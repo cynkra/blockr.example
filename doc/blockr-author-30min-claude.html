@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Become a Blockr Block Author in 30 min with Claude Code</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Become a Blockr Block Author in 30 min with
+Claude Code</h1>
+
+
+
+<div id="become-a-blockr-block-author-in-30-min-with-claude-code" class="section level1">
+<h1>Become a Blockr Block Author in 30 min with Claude Code</h1>
+<p>Welcome to the fastest way to become a proficient blockr block
+author! This tutorial will take you from zero to creating your own
+custom blockr packages in just 30 minutes using Claude Code’s
+specialized blockr agents.</p>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<ul>
+<li>R and RStudio installed</li>
+<li>Basic familiarity with R programming</li>
+<li>Claude Code CLI installed and configured</li>
+<li>Access to blockr agents (ask Christoph for current setup
+instructions)</li>
+</ul>
+<hr />
+</div>
+<div id="step-1-become-familiar-with-blockr-5-minutes" class="section level2">
+<h2>Step 1: Become familiar with blockr (5 minutes)</h2>
+<div id="install-blockr-packages" class="section level3">
+<h3>Install blockr packages</h3>
+<p>First, let’s install the core blockr ecosystem:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install blockr.ui and blockr.dplyr</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">&quot;BristolMyersSquibb/blockr.ui&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">&quot;BristolMyersSquibb/blockr.dplyr&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Load the packages</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(blockr.ui)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">library</span>(blockr.dplyr)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">library</span>(blockr.core)</span></code></pre></div>
+</div>
+<div id="try-the-demo-workflow" class="section level3">
+<h3>Try the demo workflow</h3>
+<p>Let’s see blockr in action with a simple demonstration:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Run the demo app to see blockr&#39;s visual interface</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">run_demo_app</span>()</span></code></pre></div>
+<p>This opens an interactive web interface where you can: - Drag and
+drop data blocks - Connect blocks to create data pipelines - See
+real-time results as you build workflows - Export the generated R
+code</p>
+</div>
+<div id="key-blockr-concepts" class="section level3">
+<h3>Key blockr concepts</h3>
+<p><strong>Blocks</strong> are the fundamental units: - <strong>Data
+blocks</strong>: Load/generate data (CSV files, databases, APIs) -
+<strong>Transform blocks</strong>: Modify data (filter, select, mutate,
+summarize) - <strong>Plot blocks</strong>: Create visualizations
+(ggplot2-based charts)</p>
+<p><strong>Workflows</strong> connect blocks together: - Each block
+outputs data that feeds into the next block - Visual pipeline shows data
+flow - Generated R code can be extracted and run independently</p>
+<p><strong>Reactivity</strong> powers the interface: - Changes in one
+block automatically update downstream blocks - Real-time validation and
+error handling - Interactive parameter adjustment</p>
+<hr />
+</div>
+</div>
+<div id="step-2-set-up-claude-agents-5-minutes" class="section level2">
+<h2>Step 2: Set up Claude Agents (5 minutes)</h2>
+<div id="install-claude-code-with-blockr-agents" class="section level3">
+<h3>Install Claude Code with blockr agents</h3>
+<p>Claude Code includes specialized agents for blockr development.
+Currently, you need to ask Christoph for the exact setup instructions as
+this is actively being developed.</p>
+<p>The key agents you’ll use are: -
+<strong>blockr-setup-package</strong>: Creates complete package
+structure - <strong>blockr-create-block</strong>: Generates new blocks
+(data/transform/plot) - <strong>blockr-validate-blocks</strong>:
+Screenshot validation and testing</p>
+</div>
+<div id="verify-agent-access" class="section level3">
+<h3>Verify agent access</h3>
+<p>In your terminal with Claude Code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--help</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># Look for blockr-related commands or agents</span></span></code></pre></div>
+<p>Once set up, you’ll be able to use commands like:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">claude</span> <span class="st">&quot;Use the blockr-setup-package agent to create a new package called blockr.babysteps&quot;</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="step-3-create-a-new-blockr-package-5-minutes" class="section level2">
+<h2>Step 3: Create a new blockr package (5 minutes)</h2>
+<div id="use-the-blockr-setup-package-agent" class="section level3">
+<h3>Use the blockr-setup-package agent</h3>
+<p>Let’s create your first blockr package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">claude</span> <span class="st">&quot;Use the blockr-setup-package agent to create a new blockr package called blockr.babysteps in the current directory&quot;</span></span></code></pre></div>
+<p>This agent will: 1. Create the complete package directory structure
+2. Set up proper DESCRIPTION, NAMESPACE files 3. Initialize the
+essential R files (registration, package loading) 4. Create screenshot
+validation infrastructure 5. Generate CLAUDE.md with development
+documentation</p>
+</div>
+<div id="explore-the-generated-structure" class="section level3">
+<h3>Explore the generated structure</h3>
+<p>After the agent completes, examine what was created:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">cd</span> blockr.babysteps</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span></span></code></pre></div>
+<p>You should see:</p>
+<pre><code>blockr.babysteps/
+├── DESCRIPTION          # Package metadata
+├── NAMESPACE           # Exported functions
+├── CLAUDE.md          # Development documentation
+├── R/
+│   ├── pkg.R          # Package documentation
+│   ├── register.R     # Block registration
+│   └── zzz.R          # Package loading
+├── inst/
+│   └── scripts/       # Screenshot validation
+├── man/               # Documentation
+└── tests/             # Unit tests</code></pre>
+</div>
+<div id="load-the-package" class="section level3">
+<h3>Load the package</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Load your new package for development</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Check that it loads without errors</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">library</span>(blockr.babysteps)</span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="step-4-add-a-new-block-5-minutes" class="section level2">
+<h2>Step 4: Add a new block (5 minutes)</h2>
+<div id="create-your-first-block-using-the-agent" class="section level3">
+<h3>Create your first block using the agent</h3>
+<p>Now let’s add a custom block to your package:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">claude</span> <span class="st">&quot;Use the blockr-create-block agent to create a data block that loads CSV files with parameters for file path, delimiter, and whether to include headers&quot;</span></span></code></pre></div>
+<p>The agent will: 1. Analyze your requirements (data block, CSV
+loading) 2. Create the appropriate block implementation 3. Add proper
+reactive values and UI components 4. Include input validation and error
+handling 5. Update package registration</p>
+</div>
+<div id="alternative-create-different-block-types" class="section level3">
+<h3>Alternative: Create different block types</h3>
+<p>You can create various block types:</p>
+<p><strong>Transform block example:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">claude</span> <span class="st">&quot;Use the blockr-create-transform-block agent to create a block that filters data based on numeric ranges and text matching&quot;</span></span></code></pre></div>
+<p><strong>Plot block example:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">claude</span> <span class="st">&quot;Use the blockr-create-plot-block agent to create a scatter plot block with customizable aesthetics and color grouping&quot;</span></span></code></pre></div>
+</div>
+<div id="test-your-new-block" class="section level3">
+<h3>Test your new block</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Reload the package to pick up new blocks</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co"># Test your block (assuming you created a CSV loader)</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>csv_block <span class="ot">&lt;-</span> <span class="fu">new_csv_loader_block</span>(</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="at">file_path =</span> <span class="st">&quot;path/to/your/file.csv&quot;</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  <span class="at">delimiter =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  <span class="at">headers =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co"># Serve it in the blockr interface</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>blockr.core<span class="sc">::</span><span class="fu">serve</span>(csv_block)</span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="step-5-screenshot-validation-5-minutes" class="section level2">
+<h2>Step 5: Screenshot validation (5 minutes)</h2>
+<div id="understanding-screenshot-validation" class="section level3">
+<h3>Understanding screenshot validation</h3>
+<p>Screenshot validation is the <strong>primary debugging
+method</strong> for blockr blocks. It: - Takes screenshots of blocks in
+action - Shows both UI controls AND data output - Provides visual
+confirmation that blocks work correctly - Helps identify issues
+quickly</p>
+</div>
+<div id="run-screenshot-validation" class="section level3">
+<h3>Run screenshot validation</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">claude</span> <span class="st">&quot;Use the blockr-validate-blocks agent to validate all blocks in the current package&quot;</span></span></code></pre></div>
+<p>This will: 1. Find all block implementations in your package 2.
+Generate screenshots for each block 3. Report which blocks are working
+vs broken 4. Save screenshots to <code>man/figures/</code> directory</p>
+</div>
+<div id="interpret-the-results" class="section level3">
+<h3>Interpret the results</h3>
+<p>Check the generated screenshots:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># List generated screenshots</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">&quot;man/figures/&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.png$&quot;</span>)</span></code></pre></div>
+<p><strong>✅ Working blocks</strong> show: - UI controls (inputs,
+dropdowns, checkboxes) - <strong>AND</strong> data output (tables,
+plots, results)</p>
+<p><strong>❌ Broken blocks</strong> show: - Only UI controls -
+<strong>NO</strong> data output (empty area where results should be)</p>
+</div>
+<div id="debug-broken-blocks" class="section level3">
+<h3>Debug broken blocks</h3>
+<p>If a block is broken (no data output in screenshot):</p>
+<ol style="list-style-type: decimal">
+<li><strong>Check expression syntax</strong>: Most common issue is
+malformed R expressions</li>
+<li><strong>Verify state management</strong>: Ensure all constructor
+parameters are in state list</li>
+<li><strong>Test internal functions</strong>: Verify helper functions
+work independently</li>
+<li><strong>Check reactive values</strong>: Ensure <code>r_</code>
+prefix pattern is followed</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="step-6-understand-your-block-5-minutes" class="section level2">
+<h2>Step 6: Understand your block (5 minutes)</h2>
+<div id="code-walkthrough" class="section level3">
+<h3>Code walkthrough</h3>
+<p>Let’s examine the key patterns in your generated block:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>new_your_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="at">param1 =</span> <span class="st">&quot;default1&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="at">param2 =</span> <span class="dv">100</span><span class="dt">L</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="at">param3 =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  ...</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>) {</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  blockr.core<span class="sc">::</span><span class="fu">new_data_block</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>    <span class="co"># Server function</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>    <span class="cf">function</span>(id) {</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>      <span class="fu">moduleServer</span>(id, <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>        <span class="co"># 1. Reactive values with r_ prefix</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>        r_param1 <span class="ot">&lt;-</span> <span class="fu">reactiveVal</span>(param1)</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>        r_param2 <span class="ot">&lt;-</span> <span class="fu">reactiveVal</span>(param2)</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>        r_param3 <span class="ot">&lt;-</span> <span class="fu">reactiveVal</span>(param3)</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>        <span class="co"># 2. Input observers</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>        <span class="fu">observeEvent</span>(input<span class="sc">$</span>param1, { <span class="fu">r_param1</span>(input<span class="sc">$</span>param1) })</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>        <span class="fu">observeEvent</span>(input<span class="sc">$</span>param2, { <span class="fu">r_param2</span>(input<span class="sc">$</span>param2) })</span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>        <span class="fu">observeEvent</span>(input<span class="sc">$</span>param3, { <span class="fu">r_param3</span>(input<span class="sc">$</span>param3) })</span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>          <span class="co"># 3. Expression building (parse/glue pattern)</span></span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>          <span class="at">expr =</span> <span class="fu">reactive</span>({</span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a>            expr_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot;your_function(&#39;{r_param1()}&#39;, {r_param2()})&quot;</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>            <span class="fu">parse</span>(<span class="at">text =</span> expr_text)[[<span class="dv">1</span>]]</span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a>          }),</span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a>          <span class="co"># 4. State management (ALL constructor params)</span></span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a>          <span class="at">state =</span> <span class="fu">list</span>(</span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a>            <span class="at">param1 =</span> r_param1,</span>
+<span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a>            <span class="at">param2 =</span> r_param2,</span>
+<span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a>            <span class="at">param3 =</span> r_param3</span>
+<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a>          )</span>
+<span id="cb15-33"><a href="#cb15-33" tabindex="-1"></a>        )</span>
+<span id="cb15-34"><a href="#cb15-34" tabindex="-1"></a>      })</span>
+<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a>    },</span>
+<span id="cb15-36"><a href="#cb15-36" tabindex="-1"></a>    <span class="co"># UI function</span></span>
+<span id="cb15-37"><a href="#cb15-37" tabindex="-1"></a>    <span class="cf">function</span>(id) {</span>
+<span id="cb15-38"><a href="#cb15-38" tabindex="-1"></a>      <span class="fu">tagList</span>(</span>
+<span id="cb15-39"><a href="#cb15-39" tabindex="-1"></a>        <span class="co"># Your UI components here</span></span>
+<span id="cb15-40"><a href="#cb15-40" tabindex="-1"></a>      )</span>
+<span id="cb15-41"><a href="#cb15-41" tabindex="-1"></a>    },</span>
+<span id="cb15-42"><a href="#cb15-42" tabindex="-1"></a>    <span class="at">class =</span> <span class="st">&quot;your_block_class&quot;</span>,</span>
+<span id="cb15-43"><a href="#cb15-43" tabindex="-1"></a>    ...</span>
+<span id="cb15-44"><a href="#cb15-44" tabindex="-1"></a>  )</span>
+<span id="cb15-45"><a href="#cb15-45" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="essential-patterns-explained" class="section level3">
+<h3>Essential patterns explained</h3>
+<p><strong>1. Reactive Values (<code>r_</code> prefix)</strong> - Store
+dynamic values that change based on user input - Always use
+<code>reactiveVal()</code> for initialization - Name with
+<code>r_</code> prefix for clarity</p>
+<p><strong>2. Input Observers</strong> - Listen for changes in UI inputs
+- Update reactive values when inputs change - Use
+<code>observeEvent(input$name, { r_name(input$name) })</code></p>
+<p><strong>3. Expression Building</strong> - Use
+<code>parse(text = glue::glue())</code> pattern (not
+<code>bquote</code>) - Build R expressions that will be evaluated by
+blockr - Reference reactive values with <code>r_name()</code> calls</p>
+<p><strong>4. State Management</strong> - <strong>Critical</strong>: ALL
+constructor parameters MUST be in state list - Enables block
+serialization and reconstruction - Maintains consistency across
+sessions</p>
+</div>
+<div id="next-steps-for-development" class="section level3">
+<h3>Next steps for development</h3>
+<p>Now that you have a working blockr package:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Add more blocks</strong>: Use the create-block agents for
+additional functionality</li>
+<li><strong>Customize UI</strong>: Enhance the visual design and user
+experience</li>
+<li><strong>Add validation</strong>: Implement input validation and
+error handling</li>
+<li><strong>Write tests</strong>: Create unit tests for your block
+logic</li>
+<li><strong>Create documentation</strong>: Add examples and usage
+instructions</li>
+<li><strong>Share your package</strong>: Publish to GitHub or internal
+repositories</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="common-troubleshooting" class="section level2">
+<h2>Common Troubleshooting</h2>
+<div id="block-shows-ui-but-no-data-output" class="section level3">
+<h3>Block shows UI but no data output</h3>
+<p><strong>Cause</strong>: Usually expression syntax errors or missing
+internal functions</p>
+<p><strong>Solution</strong>: 1. Check the <code>expr</code> reactive
+for proper <code>parse(text = glue::glue())</code> syntax 2. Verify
+internal functions are accessible (use <code>:::</code> for package
+internals) 3. Test expressions manually in R console</p>
+</div>
+<div id="package-wont-load" class="section level3">
+<h3>Package won’t load</h3>
+<p><strong>Cause</strong>: Missing dependencies or malformed
+DESCRIPTION</p>
+<p><strong>Solution</strong>: 1. Check DESCRIPTION file Imports section
+2. Run <code>devtools::check()</code> for detailed diagnostics 3. Ensure
+all required packages are installed</p>
+</div>
+<div id="screenshot-validation-fails" class="section level3">
+<h3>Screenshot validation fails</h3>
+<p><strong>Cause</strong>: Missing blockr.core or UI rendering
+issues</p>
+<p><strong>Solution</strong>: 1. Ensure <code>blockr.core</code> is
+properly loaded 2. Check that blocks are registered correctly 3. Verify
+UI function returns valid Shiny tagList</p>
+</div>
+<div id="block-parameters-dont-save-state" class="section level3">
+<h3>Block parameters don’t save state</h3>
+<p><strong>Cause</strong>: Constructor parameters missing from state
+list</p>
+<p><strong>Solution</strong>: 1. Ensure ALL constructor parameters
+appear in state list 2. Match parameter names exactly 3. Use reactive
+values (<code>r_name</code>) in state, not raw values</p>
+<hr />
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Congratulations! In just 30 minutes, you’ve:</p>
+<p>✅ <strong>Learned blockr fundamentals</strong> and tried the demo
+workflow<br />
+✅ <strong>Set up Claude Code agents</strong> for blockr
+development<br />
+✅ <strong>Created a complete blockr package</strong> with proper
+structure<br />
+✅ <strong>Added custom blocks</strong> using specialized agents<br />
+✅ <strong>Validated functionality</strong> with screenshot
+testing<br />
+✅ <strong>Understood the code patterns</strong> that make blockr
+work</p>
+<div id="key-takeaways" class="section level3">
+<h3>Key takeaways</h3>
+<ul>
+<li><strong>blockr makes data analysis visual</strong> with
+drag-and-drop workflows</li>
+<li><strong>Claude Code agents accelerate development</strong> with
+automated code generation</li>
+<li><strong>Screenshot validation is essential</strong> for debugging
+block functionality</li>
+<li><strong>Following blockr patterns</strong> (reactive values,
+parse/glue, state management) ensures reliability</li>
+<li><strong>The blockr.example package</strong> serves as your reference
+template</li>
+</ul>
+</div>
+<div id="resources-for-continued-learning" class="section level3">
+<h3>Resources for continued learning</h3>
+<ul>
+<li><strong>blockr.example package</strong>: Your reference
+implementation with all essential patterns</li>
+<li><strong>CLAUDE.md files</strong>: Comprehensive development
+documentation in each package</li>
+<li><strong>Screenshot validation</strong>: Your primary debugging and
+verification tool</li>
+<li><strong>blockr.dplyr</strong>: Example of complex transform
+blocks</li>
+<li><strong>Official documentation</strong>: <a href="https://bristolmyerssquibb.github.io/blockr.ui/" class="uri">https://bristolmyerssquibb.github.io/blockr.ui/</a></li>
+</ul>
+<p>Happy blockr development! 🚀</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

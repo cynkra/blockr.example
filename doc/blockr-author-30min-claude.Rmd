@@ -35,15 +35,12 @@ First, let's install the core blockr ecosystem:
 
 ```r
 # Install blockr.ui and blockr.dplyr
-pak::pak("BristolMyersSquibb/blockr.core")  # development version
 pak::pak("BristolMyersSquibb/blockr.ui")
 pak::pak("BristolMyersSquibb/blockr.dplyr")
-pak::pak("BristolMyersSquibb/blockr.ggplot")
 
 # Load the packages
 library(blockr.ui)
 library(blockr.dplyr)
-library(blockr.ggplot)
 library(blockr.core)
 ```
 
@@ -99,6 +96,11 @@ In your terminal with Claude Code:
 ```bash
 claude --help
 # Look for blockr-related commands or agents
+```
+
+Once set up, you'll be able to use commands like:
+```bash
+claude "Use the blockr-setup-package agent to create a new package called blockr.babysteps"
 ```
 
 ---
@@ -357,6 +359,24 @@ Now that you have a working blockr package:
 2. Verify internal functions are accessible (use `:::` for package internals)
 3. Test expressions manually in R console
 
+### Package won't load
+
+**Cause**: Missing dependencies or malformed DESCRIPTION
+
+**Solution**:
+1. Check DESCRIPTION file Imports section
+2. Run `devtools::check()` for detailed diagnostics
+3. Ensure all required packages are installed
+
+### Screenshot validation fails
+
+**Cause**: Missing blockr.core or UI rendering issues
+
+**Solution**:
+1. Ensure `blockr.core` is properly loaded
+2. Check that blocks are registered correctly
+3. Verify UI function returns valid Shiny tagList
+
 ### Block parameters don't save state
 
 **Cause**: Constructor parameters missing from state list
@@ -372,12 +392,12 @@ Now that you have a working blockr package:
 
 Congratulations! In just 30 minutes, you've:
 
-✅ **Learned blockr fundamentals** and tried the demo workflow
-✅ **Set up Claude Code agents** for blockr development
-✅ **Created a complete blockr package** with proper structure
-✅ **Added custom blocks** using specialized agents
-✅ **Validated functionality** with screenshot testing
-✅ **Understood the code patterns** that make blockr work
+✅ **Learned blockr fundamentals** and tried the demo workflow  
+✅ **Set up Claude Code agents** for blockr development  
+✅ **Created a complete blockr package** with proper structure  
+✅ **Added custom blocks** using specialized agents  
+✅ **Validated functionality** with screenshot testing  
+✅ **Understood the code patterns** that make blockr work  
 
 ### Key takeaways
 

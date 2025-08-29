@@ -11,5 +11,3 @@
 
 # Keep screenshots for documentation
 # man/figures/*.png - these should be committed for README display
-/doc/
-/Meta/
