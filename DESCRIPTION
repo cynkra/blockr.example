@@ -1,0 +1,24 @@
+Package: blockr.example
+Title: Example Data Blocks for blockr
+Version: 0.0.1
+Authors@R:
+    c(person(given = "Christoph",
+             family = "Sax",
+             role = c("aut", "cre"),
+             email = "christoph@cynkra.com"))
+Description: A minimal blockr package demonstrating essential patterns.
+    Provides a simple data block that serves as a template for creating
+    new blockr packages.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    shiny,
+    blockr.core (>= 0.0.1),
+    tibble,
+    glue
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+

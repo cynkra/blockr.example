@@ -1,0 +1,13 @@
+# Standard R .gitignore
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Additional entries
+.DS_Store
+*.Rcheck
+
+# Keep screenshots for documentation
+# man/figures/*.png - these should be committed for README display
