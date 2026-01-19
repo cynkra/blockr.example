@@ -2,4 +2,5 @@
 "_PACKAGE"
 
 #' @import blockr.core
+#' @import shiny
 NULL
