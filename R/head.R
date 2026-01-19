@@ -1,6 +1,15 @@
+#' Head block
+#'
+#' An example head block to demonstrate the absolute basics of creating your
+#' own block.
+#'
+#' @param n Number of rows
+#'
+#' @export
 new_example_head_block <- function(n = 6L, ...) {
   new_block(
     ui = function(id) {
+      # Always return a shiny tagList object
       tagList(
         numericInput(
           inputId = NS(id, "n"),
