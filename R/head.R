@@ -23,21 +23,21 @@ new_example_head_block <- function(n = 6L, ...) {
     server = function(id, data) {
       moduleServer(id, function(input, output, session) {
         # Track inputs
-        reactive_n = reactiveVal(n)
-        observeEvent(input$n, reactive_n(input$n))
+        n_rows = reactiveVal(n)
+        observeEvent(input$n, n_rows(input$n))
 
         # Render outputs
         output$result <- DT::renderDT({
-          expr = utils::head(data(), n = reactive_n())
+          expr = utils::head(data(), n = n_rows())
         })
 
         # Return list w/ expression and state
         list(
           expr = reactive(bquote(
-            utils::head(x = .(data), n = .(n), list(n = reactive_n()))
+            utils::head(x = .(data), n = .(n), list(n = n_rows))
           )),
           state = list(
-            n = reactive_n
+            n = n_rows
           )
         )
       })
