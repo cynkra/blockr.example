@@ -1,7 +1,7 @@
 register_example_blocks <- function() {
   register_blocks(
-    "new_head_block",
-    name = "head block",
+    "new_example_head_block",
+    name = "example head block",
     description = "Returns first n rows in data",
     category = "transform",
     icon = "eye",
