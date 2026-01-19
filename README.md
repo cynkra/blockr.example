@@ -1,0 +1,1 @@
+This repo contains example code to build the most basic of blocks in blockr.
