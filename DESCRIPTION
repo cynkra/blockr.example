@@ -1,9 +1,9 @@
 Package: blockr.example
-Title: What the Package Does (One Line, Title Case)
+Title: An Example Blockr Package With Dummy Blocks And Tests 
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Mike", "PAge", , "mike@cynkra.com", role = c("aut", "cre"))
+Description: An example blockr package with dummy blocks and tests.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
