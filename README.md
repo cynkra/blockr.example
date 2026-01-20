@@ -1,1 +1,2 @@
-This repo contains example code to build the most basic of blocks in blockr.
+This repo contains example code to rebuild a basic version of the head block found in blockr.core.
+It supports the Advanced [Developer Series](https://www.youtube.com/playlist?list=PLXes5I70H-R48vKzHY28FiQNIyyr_MHLY) videos on YouTube.
